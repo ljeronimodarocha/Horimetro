@@ -178,7 +178,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEquipamentoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CadastrodeFuncionario cadastro = new CadastrodeFuncionario();
+        Funcionario cadastro = new Funcionario();
         setVisible(false);
         cadastro.setVisible(true);
 
