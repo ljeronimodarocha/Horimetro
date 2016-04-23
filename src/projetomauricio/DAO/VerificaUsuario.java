@@ -29,7 +29,6 @@ public class VerificaUsuario {
             List<Usuario> usuarios = query.getResultList();
             
             for(Usuario user : usuarios) {
-                System.out.println(user.getNome());
                 logado = true;
             }
         } catch (Exception e) {
