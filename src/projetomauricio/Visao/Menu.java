@@ -96,6 +96,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton2.setText("OPERACIONAL");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         lblData.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblData.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -187,6 +192,12 @@ public class Menu extends javax.swing.JFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        setVisible(false);
+        Operacional operacional = new Operacional();
+        operacional.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

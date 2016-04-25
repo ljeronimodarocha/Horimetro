@@ -1,9 +1,16 @@
+package projetomauricio.Visao;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+
 package projetomauricio.Visao;
+ */
+import Objetos.Equipamento;
+import java.util.ArrayList;
+import java.util.List;
+import projetomauricio.DAO.CarregaEquipamento;
 
 /**
  *
@@ -15,7 +22,11 @@ public class Operacional extends javax.swing.JFrame {
      * Creates new form Operacional
      */
     public Operacional() {
+
         initComponents();
+        CarregaFrota();
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -39,7 +50,7 @@ public class Operacional extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         boxEquipamento = new javax.swing.JComboBox();
         lblFrota = new javax.swing.JLabel();
-        lblFrota1 = new javax.swing.JLabel();
+        boxFrota = new javax.swing.JComboBox();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -64,7 +75,6 @@ public class Operacional extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Equipamento:");
 
-        boxEquipamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         boxEquipamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxEquipamentoActionPerformed(evt);
@@ -74,8 +84,11 @@ public class Operacional extends javax.swing.JFrame {
         lblFrota.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblFrota.setText("Frota:");
 
-        lblFrota1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblFrota1.setText("001");
+        boxFrota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxFrotaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,33 +96,58 @@ public class Operacional extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblFrota)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boxEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boxFrota, 0, 64, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblFrota, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblFrota1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(boxEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(boxEquipamento)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblFrota, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFrota1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(266, Short.MAX_VALUE))
+                    .addComponent(boxFrota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(boxEquipamento, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void boxEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxEquipamentoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_boxEquipamentoActionPerformed
+
+    private void boxFrotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxFrotaActionPerformed
+        boxEquipamento.removeAllItems();
+        int valor = Integer.parseInt(boxFrota.getSelectedItem().toString());
+        CarregaEquipamento(valor);
+    }//GEN-LAST:event_boxFrotaActionPerformed
+
+    private void CarregaFrota() {
+        CarregaEquipamento carega = new CarregaEquipamento();
+        List<Equipamento> equipamentos = new ArrayList<>();
+        equipamentos = carega.CarregaFrota();
+        for (Equipamento equipamento : equipamentos) {
+            boxFrota.addItem(equipamento.getFrota());
+        }
+    }
+
+    private void CarregaEquipamento(int valor) {
+        CarregaEquipamento carrega = new CarregaEquipamento();
+        List<Equipamento> equipamentos = new ArrayList<>();
+        equipamentos = carrega.CarregaEquipamento(valor);
+        System.out.println(equipamentos);
+        for (Equipamento equipamento : equipamentos) {
+            boxEquipamento.addItem(equipamento.getEquipamento());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -148,9 +186,9 @@ public class Operacional extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox boxEquipamento;
+    private javax.swing.JComboBox boxFrota;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblFrota;
-    private javax.swing.JLabel lblFrota1;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.Menu menu3;

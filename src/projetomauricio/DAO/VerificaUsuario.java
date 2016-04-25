@@ -27,10 +27,11 @@ public class VerificaUsuario {
             query.setParameter("nome", usuario.getNome());
             query.setParameter("senha", usuario.getSenha());
             List<Usuario> usuarios = query.getResultList();
-            
-            for(Usuario user : usuarios) {
+
+            for (Usuario user : usuarios) {
                 logado = true;
             }
+            manager.close();
         } catch (Exception e) {
             logado = false;
             e.printStackTrace();

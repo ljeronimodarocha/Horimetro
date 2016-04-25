@@ -151,7 +151,6 @@ public class Login extends javax.swing.JFrame {
                 menu.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário incorreto");
-                System.out.println(user.getNome() + user.getSenha());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Os campos nome e senha devem ser preenchidos");
