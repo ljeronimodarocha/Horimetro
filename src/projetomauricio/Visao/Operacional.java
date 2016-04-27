@@ -48,9 +48,9 @@ public class Operacional extends javax.swing.JFrame {
         menu5 = new java.awt.Menu();
         menu6 = new java.awt.Menu();
         jLabel1 = new javax.swing.JLabel();
-        boxEquipamento = new javax.swing.JComboBox();
         lblFrota = new javax.swing.JLabel();
         boxFrota = new javax.swing.JComboBox();
+        lblEquipamento = new javax.swing.JLabel();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -75,12 +75,6 @@ public class Operacional extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Equipamento:");
 
-        boxEquipamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxEquipamentoActionPerformed(evt);
-            }
-        });
-
         lblFrota.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblFrota.setText("Frota:");
 
@@ -101,8 +95,8 @@ public class Operacional extends javax.swing.JFrame {
                 .addComponent(boxFrota, 0, 64, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(boxEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -113,19 +107,14 @@ public class Operacional extends javax.swing.JFrame {
                     .addComponent(lblFrota, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxFrota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(boxEquipamento, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE))
-                .addContainerGap(245, Short.MAX_VALUE))
+                    .addComponent(lblEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(246, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boxEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxEquipamentoActionPerformed
-
-    }//GEN-LAST:event_boxEquipamentoActionPerformed
-
     private void boxFrotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxFrotaActionPerformed
-        boxEquipamento.removeAllItems();
         int valor = Integer.parseInt(boxFrota.getSelectedItem().toString());
         CarregaEquipamento(valor);
     }//GEN-LAST:event_boxFrotaActionPerformed
@@ -145,7 +134,7 @@ public class Operacional extends javax.swing.JFrame {
         equipamentos = carrega.CarregaEquipamento(valor);
         System.out.println(equipamentos);
         for (Equipamento equipamento : equipamentos) {
-            boxEquipamento.addItem(equipamento.getEquipamento());
+            lblEquipamento.setText(equipamento.getEquipamento());
         }
     }
 
@@ -185,9 +174,9 @@ public class Operacional extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox boxEquipamento;
     private javax.swing.JComboBox boxFrota;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblEquipamento;
     private javax.swing.JLabel lblFrota;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;

@@ -45,11 +45,11 @@ public class Equipamentos extends javax.swing.JFrame {
         txtMarca = new javax.swing.JTextField();
         txtModelo = new javax.swing.JTextField();
         txtAno = new javax.swing.JTextField();
-        txtHorimetro = new javax.swing.JTextField();
         txtObservacao = new javax.swing.JTextField();
         btnGravar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        txtHorimetro = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -87,12 +87,6 @@ public class Equipamentos extends javax.swing.JFrame {
             }
         });
 
-        txtHorimetro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHorimetroActionPerformed(evt);
-            }
-        });
-
         btnGravar.setText("Gravar");
         btnGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +106,17 @@ public class Equipamentos extends javax.swing.JFrame {
         jLabel8.setText("CADASTRO DE  EQUIPAMENTOS");
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        try {
+            txtHorimetro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#######.##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtHorimetro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHorimetroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,21 +131,23 @@ public class Equipamentos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFrota, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtHorimetro, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(151, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtHorimetro)
+                                    .addComponent(txtFrota, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                                    .addComponent(txtEquipamento, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                                    .addComponent(txtMarca, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                                    .addComponent(txtModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                                    .addComponent(txtAno, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))))
+                        .addGap(75, 75, 75))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(65, 65, 65)
@@ -199,10 +206,6 @@ public class Equipamentos extends javax.swing.JFrame {
         menu.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void txtHorimetroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorimetroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHorimetroActionPerformed
-
     private void txtEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEquipamentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEquipamentoActionPerformed
@@ -216,7 +219,7 @@ public class Equipamentos extends javax.swing.JFrame {
             String marca = txtMarca.getText();
             String modelo = txtModelo.getText();
             String ano = txtAno.getText();
-            Float horimetro = Float.parseFloat(txtHorimetro.getText());
+            double horimetro = Double.parseDouble(txtHorimetro.getText());
             String observacao = txtObservacao.getText();
             Equipamento equipamento = new Equipamento(frota, equi, marca, modelo, ano, horimetro, observacao);
 
@@ -284,6 +287,10 @@ public class Equipamentos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtFrotaKeyTyped
 
+    private void txtHorimetroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorimetroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHorimetroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -342,7 +349,7 @@ public class Equipamentos extends javax.swing.JFrame {
     private javax.swing.JTextField txtAno;
     private javax.swing.JTextField txtEquipamento;
     private javax.swing.JTextField txtFrota;
-    private javax.swing.JTextField txtHorimetro;
+    private javax.swing.JFormattedTextField txtHorimetro;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtObservacao;
