@@ -28,6 +28,7 @@ public class Operacional extends javax.swing.JFrame {
         initComponents();
         CarregaFrota();
         setLocationRelativeTo(null);
+        txtMotivo.disable();
 
     }
 
@@ -147,7 +148,6 @@ public class Operacional extends javax.swing.JFrame {
             }
         });
 
-        txtMotivo.setEditable(false);
         txtMotivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMotivoActionPerformed(evt);
@@ -325,7 +325,11 @@ public class Operacional extends javax.swing.JFrame {
     }//GEN-LAST:event_txtValorCombustivelActionPerformed
 
     private void RadioParadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioParadaActionPerformed
-        // TODO add your handling code here:
+        if (RadioParada.isSelected()) {
+            txtMotivo.enable();
+        } else {
+            txtMotivo.disable();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_RadioParadaActionPerformed
 
     private void txtMotivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMotivoActionPerformed
@@ -361,13 +365,15 @@ public class Operacional extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAbastecimentoKeyReleased
 
     private void txtValorCombustivelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorCombustivelKeyReleased
-        int combustivel = Integer.parseInt(txtAbastecimento.getText());
-        int valor = Integer.parseInt(txtValorCombustivel.getText());
-        txtlGasto.setText(String.valueOf(combustivel * valor));
+        Double combustivel = Double.parseDouble(txtAbastecimento.getText());
+        Double valor = Double.parseDouble(txtValorCombustivel.getText());
+        DecimalFormat df = new DecimalFormat("0.##");
+        String resultadofinal = df.format(combustivel * valor);
+        txtlGasto.setText(resultadofinal);
     }//GEN-LAST:event_txtValorCombustivelKeyReleased
 
     private void RadioParadaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RadioParadaKeyReleased
-        
+
     }//GEN-LAST:event_RadioParadaKeyReleased
 
     private void CarregaFrota() {
