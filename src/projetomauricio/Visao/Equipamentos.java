@@ -87,6 +87,12 @@ public class Equipamentos extends javax.swing.JFrame {
             }
         });
 
+        txtAno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAnoKeyTyped(evt);
+            }
+        });
+
         btnGravar.setText("Gravar");
         btnGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,7 +257,7 @@ public class Equipamentos extends javax.swing.JFrame {
             if (txtEquipamento.getText().length() != 0) {
                 if (txtMarca.getText().length() != 0) {
                     if (txtModelo.getText().length() != 0) {
-                        if (txtAno.getText().length() != 0) {
+                        if (txtAno.getText().length() != 0 && txtAno.getText().length() == 4) {
                             if (txtHorimetro.getText().length() != 0) {
                                 if (txtObservacao.getText().length() != 0) {
                                     autentica = true;
@@ -292,6 +298,13 @@ public class Equipamentos extends javax.swing.JFrame {
     private void txtHorimetroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorimetroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHorimetroActionPerformed
+
+    private void txtAnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnoKeyTyped
+        String caracteres = "0987654321";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAnoKeyTyped
 
     /**
      * @param args the command line arguments

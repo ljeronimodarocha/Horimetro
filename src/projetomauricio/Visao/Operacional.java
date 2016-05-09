@@ -47,13 +47,12 @@ public class Operacional extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblInicial = new javax.swing.JLabel();
-        lblEquipamento = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtAbastecimento = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtValorCombustivel = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        RadioParada = new javax.swing.JRadioButton();
         txtMotivo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnGravar = new javax.swing.JButton();
@@ -64,6 +63,7 @@ public class Operacional extends javax.swing.JFrame {
         txtMedia = new javax.swing.JTextField();
         txtlGasto = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        lblEquipamento = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -111,9 +111,6 @@ public class Operacional extends javax.swing.JFrame {
         lblInicial.setBackground(new java.awt.Color(255, 0, 0));
         lblInicial.setText("as");
 
-        lblEquipamento.setBackground(new java.awt.Color(51, 255, 51));
-        lblEquipamento.setText("as");
-
         jLabel3.setText("Abastecimento:");
 
         txtAbastecimento.setVerifyInputWhenFocusTarget(false);
@@ -138,15 +135,15 @@ public class Operacional extends javax.swing.JFrame {
 
         jLabel7.setText("Valor do Combustível R$");
 
-        jRadioButton1.setText("Parada");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        RadioParada.setText("Parada");
+        RadioParada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                RadioParadaActionPerformed(evt);
             }
         });
-        jRadioButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+        RadioParada.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jRadioButton1KeyReleased(evt);
+                RadioParadaKeyReleased(evt);
             }
         });
 
@@ -190,6 +187,8 @@ public class Operacional extends javax.swing.JFrame {
 
         jLabel9.setText("Gasto Total:");
 
+        lblEquipamento.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -199,7 +198,7 @@ public class Operacional extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jRadioButton1)
+                        .addComponent(RadioParada)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -218,12 +217,13 @@ public class Operacional extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
+                                .addGap(16, 16, 16)
                                 .addComponent(txtFinal))
-                            .addComponent(lblEquipamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblEquipamento))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(83, 83, 83)
@@ -264,7 +264,7 @@ public class Operacional extends javax.swing.JFrame {
                     .addComponent(lblFrota, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxFrota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(lblEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -290,7 +290,7 @@ public class Operacional extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1)
+                    .addComponent(RadioParada)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -324,9 +324,9 @@ public class Operacional extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorCombustivelActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void RadioParadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioParadaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_RadioParadaActionPerformed
 
     private void txtMotivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMotivoActionPerformed
         // TODO add your handling code here:
@@ -366,9 +366,9 @@ public class Operacional extends javax.swing.JFrame {
         txtlGasto.setText(String.valueOf(combustivel * valor));
     }//GEN-LAST:event_txtValorCombustivelKeyReleased
 
-    private void jRadioButton1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRadioButton1KeyReleased
+    private void RadioParadaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RadioParadaKeyReleased
         
-    }//GEN-LAST:event_jRadioButton1KeyReleased
+    }//GEN-LAST:event_RadioParadaKeyReleased
 
     private void CarregaFrota() {
         CarregaEquipamento carega = new CarregaEquipamento();
@@ -437,6 +437,7 @@ public class Operacional extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton RadioParada;
     private javax.swing.JComboBox boxFrota;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnLimpar;
@@ -450,8 +451,7 @@ public class Operacional extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JLabel lblEquipamento;
+    private javax.swing.JTextField lblEquipamento;
     private javax.swing.JLabel lblFrota;
     private javax.swing.JLabel lblInicial;
     private javax.swing.JTextField txtAbastecimento;
