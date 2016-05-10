@@ -6,9 +6,12 @@
 package projetomauricio.Visao;
 
 import Objetos.Equipamento;
+import Objetos.Operacao;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import projetomauricio.DAO.CadastraOperacao;
 import projetomauricio.DAO.CarregaEquipamento;
 
 /**
@@ -20,16 +23,17 @@ public class Operacional extends javax.swing.JFrame {
     /**
      * Creates new form Operacional
      */
+    Equipamento equipamento = new Equipamento();
     Double ValorInicial;
     Double ValorFinal;
     Double resultado;
+    Double resultadoMedia;
 
     public Operacional() {
         initComponents();
         CarregaFrota();
         setLocationRelativeTo(null);
         txtMotivo.disable();
-
     }
 
     /**
@@ -327,8 +331,10 @@ public class Operacional extends javax.swing.JFrame {
     private void RadioParadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioParadaActionPerformed
         if (RadioParada.isSelected()) {
             txtMotivo.enable();
+            txtMotivo.setText("");
         } else {
             txtMotivo.disable();
+            txtMotivo.setText("");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_RadioParadaActionPerformed
 
@@ -338,6 +344,21 @@ public class Operacional extends javax.swing.JFrame {
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
 
+        Double abastecimento = Double.parseDouble(txtAbastecimento.getText());
+        Double horasTrabalhadas = resultado;
+
+        Double gastoTotal = Double.parseDouble(txtlGasto.getText());
+        Double valorCombustivel = Double.parseDouble(txtValorCombustivel.getText());
+        boolean parada;
+        if (RadioParada.isSelected()) {
+            parada = true;
+        } else {
+            parada = false;
+        }
+        String motivo = txtMotivo.getText();
+        
+        Operacao operacao = new Operacao(equipamento, abastecimento, resultado, resultadoMedia, gastoTotal, valorCombustivel, parada, motivo);
+        CadastraOperacao dao = new CadastraOperacao();
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -357,9 +378,9 @@ public class Operacional extends javax.swing.JFrame {
     private void txtAbastecimentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAbastecimentoKeyReleased
 
         Double abastecimento = Double.parseDouble(txtAbastecimento.getText());
-        Double resu = this.resultado / abastecimento;
+        resultadoMedia = this.resultado / abastecimento;
         DecimalFormat df = new DecimalFormat("0.##");
-        String resultadofinal = df.format(resu);
+        String resultadofinal = df.format(resultadoMedia);
         txtMedia.setText(String.valueOf(resultadofinal));
 
     }//GEN-LAST:event_txtAbastecimentoKeyReleased
@@ -382,18 +403,18 @@ public class Operacional extends javax.swing.JFrame {
         equipamentos = carega.CarregaFrota();
         for (Equipamento equipamento : equipamentos) {
             boxFrota.addItem(equipamento.getFrota());
-
         }
     }
 
     private void CarregaEquipamento(int valor) {
         CarregaEquipamento carrega = new CarregaEquipamento();
         List<Equipamento> equipamentos = carrega.CarregaEquipamento(valor);
-        for (Equipamento equipamento : equipamentos) {
-            lblEquipamento.setText(equipamento.getEquipamento());
-            lblInicial.setText(String.valueOf(equipamento.getHorimetro()));
-
-        }
+        equipamento = equipamentos.get(0);
+        lblEquipamento.setText(equipamento.getEquipamento());
+        lblInicial.setText(String.valueOf(equipamento.getHorimetro()));
+        Operacao opera = new Operacao();
+        opera.setEquipamento(equipamento);
+        System.out.println(opera.getEquipamento());
     }
 
     private void calcula() {
@@ -420,16 +441,24 @@ public class Operacional extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Operacional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Operacional.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Operacional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Operacional.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Operacional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Operacional.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Operacional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Operacional.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

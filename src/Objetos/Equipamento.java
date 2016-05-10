@@ -5,6 +5,7 @@
  */
 package Objetos;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,7 @@ import javax.persistence.Id;
  * @author Lucas
  */
 @Entity
-public class Equipamento {
+public class Equipamento implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -106,10 +107,7 @@ public class Equipamento {
         this.observacao = observacao;
     }
 
-    @Override
-    public String toString() {
-        return getModelo(); //To change body of generated methods, choose Tools | Templates.
-    }
+   
     
     
 
