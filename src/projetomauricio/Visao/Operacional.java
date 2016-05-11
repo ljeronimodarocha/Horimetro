@@ -90,19 +90,6 @@ public class Operacional extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtFinal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtFinalMouseEntered(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtFinalMousePressed(evt);
-            }
-        });
-        txtFinal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFinalActionPerformed(evt);
-            }
-        });
         txtFinal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtFinalKeyReleased(evt);
@@ -127,11 +114,6 @@ public class Operacional extends javax.swing.JFrame {
 
         jLabel5.setText("Média:");
 
-        txtValorCombustivel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorCombustivelActionPerformed(evt);
-            }
-        });
         txtValorCombustivel.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtValorCombustivelKeyReleased(evt);
@@ -144,17 +126,6 @@ public class Operacional extends javax.swing.JFrame {
         RadioParada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RadioParadaActionPerformed(evt);
-            }
-        });
-        RadioParada.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                RadioParadaKeyReleased(evt);
-            }
-        });
-
-        txtMotivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMotivoActionPerformed(evt);
             }
         });
 
@@ -312,22 +283,6 @@ public class Operacional extends javax.swing.JFrame {
         CarregaEquipamento(valor);
     }//GEN-LAST:event_boxFrotaActionPerformed
 
-    private void txtFinalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFinalMouseEntered
-
-    }//GEN-LAST:event_txtFinalMouseEntered
-
-    private void txtFinalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFinalMousePressed
-
-    }//GEN-LAST:event_txtFinalMousePressed
-
-    private void txtFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFinalActionPerformed
-
-    }//GEN-LAST:event_txtFinalActionPerformed
-
-    private void txtValorCombustivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorCombustivelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorCombustivelActionPerformed
-
     private void RadioParadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioParadaActionPerformed
         if (RadioParada.isSelected()) {
             txtMotivo.enable();
@@ -337,10 +292,6 @@ public class Operacional extends javax.swing.JFrame {
             txtMotivo.setText("");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_RadioParadaActionPerformed
-
-    private void txtMotivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMotivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMotivoActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
 
@@ -356,9 +307,10 @@ public class Operacional extends javax.swing.JFrame {
             parada = false;
         }
         String motivo = txtMotivo.getText();
-        
+
         Operacao operacao = new Operacao(equipamento, abastecimento, resultado, resultadoMedia, gastoTotal, valorCombustivel, parada, motivo);
         CadastraOperacao dao = new CadastraOperacao();
+        dao.CadastraOperação(operacao);
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -392,10 +344,6 @@ public class Operacional extends javax.swing.JFrame {
         String resultadofinal = df.format(combustivel * valor);
         txtlGasto.setText(resultadofinal);
     }//GEN-LAST:event_txtValorCombustivelKeyReleased
-
-    private void RadioParadaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RadioParadaKeyReleased
-
-    }//GEN-LAST:event_RadioParadaKeyReleased
 
     private void CarregaFrota() {
         CarregaEquipamento carega = new CarregaEquipamento();
