@@ -30,8 +30,6 @@ public class Menu extends javax.swing.JFrame {
         String data = formataData.format(dataHoje);
         Login login = new Login();
         mostraHora();
-        System.out.println(nome);
-
     }
 
     public void mostraHora() {

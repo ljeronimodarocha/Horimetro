@@ -6,6 +6,7 @@
 package Objetos;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,7 @@ import javax.persistence.Id;
  * @author Lucas
  */
 @Entity
-public class Operacao implements Serializable{ 
+public class Operacao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,11 +40,13 @@ public class Operacao implements Serializable{
 
     private String motivo;
 
+    private Date data;
+
     public Operacao() {
 
     }
 
-    public Operacao(Equipamento equipamento, Double abastecimento, Double horasTrabalhadas, Double media, Double gastoTotal, Double valorCombustivel, boolean parada, String motivo) {
+    public Operacao(Equipamento equipamento, Double abastecimento, Double horasTrabalhadas, Double media, Double gastoTotal, Double valorCombustivel, boolean parada, String motivo, Date data) {
         this.id = id;
         this.equipamento = equipamento;
         this.abastecimento = abastecimento;
@@ -53,6 +56,7 @@ public class Operacao implements Serializable{
         this.valorCombustivel = valorCombustivel;
         this.parada = parada;
         this.motivo = motivo;
+        this.data = data;
     }
 
     public int getId() {
@@ -125,6 +129,14 @@ public class Operacao implements Serializable{
 
     public void setMotivo(String motivo) {
         this.motivo = motivo;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 
 }

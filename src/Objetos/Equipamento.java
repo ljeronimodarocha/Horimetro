@@ -26,7 +26,7 @@ public class Equipamento implements Serializable{
     private String marca;
     private String modelo;
     private String ano;
-    private double horimetro;
+    private Double horimetro;
     private String observacao;
 
     public Equipamento() {
@@ -95,7 +95,7 @@ public class Equipamento implements Serializable{
         return horimetro;
     }
 
-    public void setHorimetro(Float horimetro) {
+    public void setHorimetro(Double horimetro) {
         this.horimetro = horimetro;
     }
 

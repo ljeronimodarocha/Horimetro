@@ -8,11 +8,14 @@ package projetomauricio.Visao;
 import Objetos.Equipamento;
 import Objetos.Operacao;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import projetomauricio.DAO.CadastraOperacao;
 import projetomauricio.DAO.CarregaEquipamento;
+import projetomauricio.DAO.AtualizaEquipamento;
 
 /**
  *
@@ -301,10 +304,15 @@ public class Operacional extends javax.swing.JFrame {
             } else {
                 parada = false;
             }
+            equipamento.setHorimetro(ValorFinal);
             String motivo = txtMotivo.getText();
-            Operacao operacao = new Operacao(equipamento, abastecimento, resultado, resultadoMedia, gastoTotal, valorCombustivel, parada, motivo);
+
+            Date data = new Date();
+            Operacao operacao = new Operacao(equipamento, abastecimento, resultado, resultadoMedia, gastoTotal, valorCombustivel, parada, motivo, data);
             CadastraOperacao dao = new CadastraOperacao();
             dao.CadastraOperação(operacao);
+            AtualizaEquipamento atualiza = new AtualizaEquipamento();
+            atualiza.Atualiza(equipamento);
             LimpaCampo();
         } else {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos corretamente!");

@@ -5,6 +5,7 @@
  */
 package projetomauricio.DAO;
 
+import javax.swing.JOptionPane;
 import Objetos.Operacao;
 import Util.JPAUtil;
 import javax.persistence.EntityManager;
@@ -26,7 +27,7 @@ public class CadastraOperacao {
             manager.close();
             efetuado = true;
         } catch (Exception e) {
-            System.out.println(e);
+           JOptionPane.showMessageDialog(null, e);
             efetuado = false;
         }
         return efetuado;
