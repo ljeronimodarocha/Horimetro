@@ -28,9 +28,9 @@ public class teste {
         Date fim = new Date();
         fim = df.parse("2016/05/16");
         operacoes = dao.Relatorio(8, inicial, fim);
-//        for(Operacao operacoe : operacoes) {
-//            System.out.print(operacoe.getId());
-//        }
+        for(Operacao operacoe : operacoes) {
+            System.out.println(operacoe.getId());
+        }
         System.out.println(operacoes.size());
     }
 

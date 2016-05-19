@@ -7,9 +7,13 @@ package projetomauricio.Visao;
 
 import Objetos.Equipamento;
 import Objetos.Operacao;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import projetomauricio.DAO.BuscaRelatorio;
 import projetomauricio.DAO.CarregaEquipamento;
 
 /**
@@ -19,6 +23,7 @@ import projetomauricio.DAO.CarregaEquipamento;
 public class Relatorio extends javax.swing.JFrame {
 
     Equipamento equipamento;
+
     /**
      * Creates new form Relatorio
      */
@@ -48,10 +53,10 @@ public class Relatorio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblEquipamento = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        txtInicial = new javax.swing.JFormattedTextField();
+        txtFinal = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BtnGerarRelatorio = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         TabtleRelatorio = new javax.swing.JTable();
         jToggleButton2 = new javax.swing.JToggleButton();
@@ -101,20 +106,25 @@ public class Relatorio extends javax.swing.JFrame {
         jLabel2.setText("Data Inicial:");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         jLabel3.setText("Data Final");
 
-        jButton1.setText("Gerar Relatório");
+        BtnGerarRelatorio.setText("Gerar Relatório");
+        BtnGerarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGerarRelatorioActionPerformed(evt);
+            }
+        });
 
         TabtleRelatorio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -144,27 +154,26 @@ public class Relatorio extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1)
+                                    .addComponent(BtnGerarRelatorio)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                                 .addComponent(jToggleButton2))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(lblFrota, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(boxFrota, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(30, 30, 30)
-                                    .addComponent(jLabel1))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
-                                    .addComponent(jLabel3))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblFrota, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boxFrota, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel3)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -180,12 +189,12 @@ public class Relatorio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(BtnGerarRelatorio)
                     .addComponent(jToggleButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
@@ -199,6 +208,23 @@ public class Relatorio extends javax.swing.JFrame {
         int valor = Integer.parseInt(boxFrota.getSelectedItem().toString());
         CarregaEquipamento(valor);
     }//GEN-LAST:event_boxFrotaActionPerformed
+
+    private void BtnGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGerarRelatorioActionPerformed
+        try {
+            List<Operacao> operacoes = new ArrayList<>();
+            BuscaRelatorio dao = new BuscaRelatorio();
+            Date inicial = new Date();
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            inicial = df.parse(txtInicial.getText());
+            Date fim = new Date();
+            fim = df.parse(txtFinal.getText());
+            operacoes = dao.Relatorio(equipamento.getId(), inicial, fim);
+            System.out.println(operacoes.size());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Erro ao Buscar relatório" + e);
+        }
+
+    }//GEN-LAST:event_BtnGerarRelatorioActionPerformed
 
     private void CarregaFrota() {
         CarregaEquipamento carega = new CarregaEquipamento();
@@ -252,9 +278,10 @@ public class Relatorio extends javax.swing.JFrame {
             }
         });
     }
-    public void tabela(){
+
+    public void tabela() {
         DefaultTableModel modelo = new DefaultTableModel();
-        
+
         modelo.addColumn("ID");
         modelo.addColumn("Horas Trabalhadas");
         modelo.addColumn("Quantidade de combutível");
@@ -264,7 +291,7 @@ public class Relatorio extends javax.swing.JFrame {
         modelo.addColumn("Efetuada a parada");
         modelo.addColumn("Motivo da parada");
         modelo.addColumn("ID do Equipamento");
-        
+
         TabtleRelatorio.setModel(modelo);
         TabtleRelatorio.getColumnModel().getColumn(0).setPreferredWidth(70);
         TabtleRelatorio.getColumnModel().getColumn(1).setPreferredWidth(168);
@@ -275,16 +302,14 @@ public class Relatorio extends javax.swing.JFrame {
         TabtleRelatorio.getColumnModel().getColumn(6).setPreferredWidth(150);
         TabtleRelatorio.getColumnModel().getColumn(7).setPreferredWidth(270);
         TabtleRelatorio.getColumnModel().getColumn(8).setPreferredWidth(150);
-        
+
 //        TabtleRelatorio.setAutoResizeMode(TabtleRelatorio.setAutoResizeMode());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnGerarRelatorio;
     private javax.swing.JTable TabtleRelatorio;
     private javax.swing.JComboBox boxFrota;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -296,5 +321,7 @@ public class Relatorio extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JTextField lblEquipamento;
     private javax.swing.JLabel lblFrota;
+    private javax.swing.JFormattedTextField txtFinal;
+    private javax.swing.JFormattedTextField txtInicial;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,18 +19,17 @@ import javax.persistence.Query;
  * @author Lucas
  */
 public class BuscaRelatorio {
+
     EntityManager manager = new JPAUtil().criaEntityManager();
-    
-    public List<Operacao> Relatorio(int id, Date inicial, Date fim){
-        Query query = manager.createQuery("select o from Operacao o where o.idEquipamento = :id and o.data >= :inicial and o.data <= :final");
-        List<Operacao> operacoes = new ArrayList<>(); 
+
+    public List<Operacao> Relatorio(int id, Date inicial, Date fim) {
+        Query query = manager.createQuery("select o from Operacao o where o.equipamento.id = :id and o.data >= :inicial and o.data <= :final");
+        List<Operacao> operacoes = new ArrayList<>();
         query.setParameter("id", id);
         query.setParameter("inicial", inicial);
         query.setParameter("final", fim);
         operacoes = query.getResultList();
-        System.out.println(operacoes.size());
         return operacoes;
-        
     }
-    
+
 }
