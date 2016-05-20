@@ -115,7 +115,7 @@ public class Operacao implements Serializable {
         this.valorCombustivel = valorCombustivel;
     }
 
-    public boolean isParada() {
+    public boolean getParada() {
         return parada;
     }
 

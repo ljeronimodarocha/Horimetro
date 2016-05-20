@@ -7,6 +7,7 @@ package projetomauricio.Visao;
 
 import Objetos.Equipamento;
 import Objetos.Operacao;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +24,8 @@ import projetomauricio.DAO.CarregaEquipamento;
 public class Relatorio extends javax.swing.JFrame {
 
     Equipamento equipamento;
+    List<Operacao> operacoes = new ArrayList<>();
+    DefaultTableModel modelo = new DefaultTableModel();
 
     /**
      * Creates new form Relatorio
@@ -211,16 +214,34 @@ public class Relatorio extends javax.swing.JFrame {
 
     private void BtnGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGerarRelatorioActionPerformed
         try {
-            List<Operacao> operacoes = new ArrayList<>();
+
+            DecimalFormat numero = new DecimalFormat("0.##");
             BuscaRelatorio dao = new BuscaRelatorio();
-            Date inicial = new Date();
+            Date inicial, fim = new Date();
             SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             inicial = df.parse(txtInicial.getText());
-            Date fim = new Date();
             fim = df.parse(txtFinal.getText());
             operacoes = dao.Relatorio(equipamento.getId(), inicial, fim);
             System.out.println(operacoes.size());
-        }catch(Exception e){
+            String[] dados = new String[9];
+            for (Operacao operacao : operacoes) {
+                dados[0] = String.valueOf(operacao.getId());
+                dados[1] = String.valueOf(numero.format(operacao.getHorasTrabalhadas()));
+                dados[2] = String.valueOf(operacao.getAbastecimento());
+                dados[3] = String.valueOf(numero.format(operacao.getMedia()));
+                dados[4] = String.valueOf(operacao.getValorCombustivel());
+                dados[5] = String.valueOf(operacao.getGastoTotal());
+                if (operacao.getParada() == true) {
+                    dados[6] = "sim";
+                } else {
+                    dados[6] = "não";
+                }
+                dados[7] = operacao.getMotivo();
+                dados[8] = String.valueOf(equipamento.getFrota());
+                modelo.addRow(dados);
+            }
+
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao Buscar relatório" + e);
         }
 
@@ -280,8 +301,6 @@ public class Relatorio extends javax.swing.JFrame {
     }
 
     public void tabela() {
-        DefaultTableModel modelo = new DefaultTableModel();
-
         modelo.addColumn("ID");
         modelo.addColumn("Horas Trabalhadas");
         modelo.addColumn("Quantidade de combutível");
@@ -290,7 +309,7 @@ public class Relatorio extends javax.swing.JFrame {
         modelo.addColumn("Gasto Total");
         modelo.addColumn("Efetuada a parada");
         modelo.addColumn("Motivo da parada");
-        modelo.addColumn("ID do Equipamento");
+        modelo.addColumn("Frota");
 
         TabtleRelatorio.setModel(modelo);
         TabtleRelatorio.getColumnModel().getColumn(0).setPreferredWidth(70);
