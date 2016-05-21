@@ -6,6 +6,12 @@
 package projetomauricio.Visao;
 
 import Objetos.Operacao;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,7 +25,7 @@ import projetomauricio.DAO.BuscaRelatorio;
  */
 public class teste {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, FileNotFoundException {
         List<Operacao> operacoes = new ArrayList<>();
         BuscaRelatorio dao = new BuscaRelatorio();
         Date inicial = new Date();
@@ -31,7 +37,22 @@ public class teste {
         for(Operacao operacoe : operacoes) {
             System.out.println(operacoe.getId());
         }
-        System.out.println(operacoes.size());
+        
+
     }
 
+    public void geraPDF() throws FileNotFoundException {
+        Document document = new Document();
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\LocalPDF/PDF_DevMedia.pdf"));
+            document.open();
+            document.add(new Paragraph("Gerando PDF em Java - metadados"));
+            document.addSubject("Gerando PDF em Java");
+            document.addKeywords("www.devmedia.com.br");
+            document.addCreator("iText");
+        } catch (DocumentException de) {
+            System.err.println(de.getMessage());
+        }
+        document.close();
+    }
 }
