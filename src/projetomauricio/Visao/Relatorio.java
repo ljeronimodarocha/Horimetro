@@ -282,7 +282,7 @@ public class Relatorio extends javax.swing.JFrame {
 
     private void BtnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPDFActionPerformed
         DecimalFormat numero = new DecimalFormat("0.##");
-        SimpleDateFormat data = new SimpleDateFormat("dd-MM-yyyy HH-mm") {
+        SimpleDateFormat data = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss") {
         };
         Date nome = new Date();
         String teste = data.format(nome);
@@ -316,6 +316,7 @@ public class Relatorio extends javax.swing.JFrame {
             document.addSubject("Gerando PDF em Java");
             document.addKeywords("www.devmedia.com.br");
             document.addCreator("iText");
+            JOptionPane.showMessageDialog(null, "PDF gerado com sucesso.");
         } catch (DocumentException de) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar o PDF" + de);
         }
