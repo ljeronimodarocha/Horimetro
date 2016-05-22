@@ -313,6 +313,7 @@ public class Operacional extends javax.swing.JFrame {
             dao.CadastraOperação(operacao);
             AtualizaEquipamento atualiza = new AtualizaEquipamento();
             atualiza.Atualiza(equipamento);
+            JOptionPane.showMessageDialog(null, "Operação Cadastrada com sucesso!");
             LimpaCampo();
         } else {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos corretamente!");
@@ -397,9 +398,13 @@ public class Operacional extends javax.swing.JFrame {
                 if (txtValorCombustivel.getText().length() != 0) {
                     if (RadioParada.isSelected() == true && txtMotivo.getText().length() != 0) {
                         autenticado = true;
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Parada foi selecionada, informe o motivo!");
                     }
+                    if (RadioParada.isSelected() == false) {
+                        autenticado = true;
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Informe o motivo da parada!");
+                    }
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Informe o valor do combustível");
                 }
