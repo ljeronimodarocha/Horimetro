@@ -404,7 +404,6 @@ public class Operacional extends javax.swing.JFrame {
                     }else{
                         JOptionPane.showMessageDialog(null, "Informe o motivo da parada!");
                     }
-
                 } else {
                     JOptionPane.showMessageDialog(null, "Informe o valor do combustível");
                 }

@@ -72,6 +72,7 @@ public class Relatorio extends javax.swing.JFrame {
         TabtleRelatorio = new javax.swing.JTable();
         btnLimpar = new javax.swing.JButton();
         BtnPDF = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,7 +100,7 @@ public class Relatorio extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         boxFrota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +167,13 @@ public class Relatorio extends javax.swing.JFrame {
             }
         });
 
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -201,7 +209,9 @@ public class Relatorio extends javax.swing.JFrame {
                                 .addGap(58, 58, 58)
                                 .addComponent(btnLimpar)))
                         .addGap(18, 18, 18)
-                        .addComponent(BtnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BtnPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                            .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -226,7 +236,8 @@ public class Relatorio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnGerarRelatorio)
-                    .addComponent(btnLimpar))
+                    .addComponent(btnLimpar)
+                    .addComponent(btnVoltar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                 .addContainerGap())
@@ -250,6 +261,7 @@ public class Relatorio extends javax.swing.JFrame {
             SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             inicial = df.parse(txtInicial.getText());
             fim = df.parse(txtFinal.getText());
+            System.out.println(equipamento.getId());
             operacoes = dao.Relatorio(equipamento.getId(), inicial, fim);
             System.out.println(operacoes.size());
             String[] dados = new String[9];
@@ -261,9 +273,9 @@ public class Relatorio extends javax.swing.JFrame {
                 dados[4] = String.valueOf(operacao.getValorCombustivel());
                 dados[5] = String.valueOf(operacao.getGastoTotal());
                 if (operacao.getParada() == true) {
-                    dados[6] = "sim";
+                    dados[6] = "Sim";
                 } else {
-                    dados[6] = "não";
+                    dados[6] = "Não";
                 }
                 dados[7] = operacao.getMotivo();
                 dados[8] = String.valueOf(equipamento.getFrota());
@@ -278,6 +290,8 @@ public class Relatorio extends javax.swing.JFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         limpar();
+        txtInicial.setText("");
+        txtFinal.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void BtnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPDFActionPerformed
@@ -322,6 +336,12 @@ public class Relatorio extends javax.swing.JFrame {
         }
         document.close();
     }//GEN-LAST:event_BtnPDFActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        setVisible(false);
+        Menu menu = new Menu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void CarregaFrota() {
         CarregaEquipamento carega = new CarregaEquipamento();
@@ -411,6 +431,7 @@ public class Relatorio extends javax.swing.JFrame {
     private javax.swing.JTable TabtleRelatorio;
     private javax.swing.JComboBox boxFrota;
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

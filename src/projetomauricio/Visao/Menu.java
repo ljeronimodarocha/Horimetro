@@ -10,6 +10,7 @@ import Objetos.Usuario;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 /**
  *
  * @author ljrocha
@@ -53,11 +54,11 @@ public class Menu extends javax.swing.JFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         btnEquipamento = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnOperacional = new javax.swing.JButton();
         lblData = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnRelatorio = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
@@ -93,10 +94,10 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("OPERACIONAL");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnOperacional.setText("OPERACIONAL");
+        btnOperacional.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnOperacionalActionPerformed(evt);
             }
         });
 
@@ -114,7 +115,12 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("RELATÓRIOS");
+        btnRelatorio.setText("RELATÓRIOS");
+        btnRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRelatorioActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Menu Inicial");
@@ -133,10 +139,10 @@ public class Menu extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnSair, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRelatorio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEquipamento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnOperacional, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -161,9 +167,9 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnOperacional)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(btnRelatorio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSair)
                         .addContainerGap(28, Short.MAX_VALUE))))
@@ -191,11 +197,17 @@ public class Menu extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnOperacionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionalActionPerformed
         setVisible(false);
         Operacional operacional = new Operacional();
         operacional.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnOperacionalActionPerformed
+
+    private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
+        setVisible(false);
+        Relatorio relatorio = new Relatorio();
+        relatorio.setVisible(true);
+    }//GEN-LAST:event_btnRelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,10 +246,10 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEquipamento;
+    private javax.swing.JButton btnOperacional;
+    private javax.swing.JButton btnRelatorio;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
