@@ -5,7 +5,7 @@
  */
 package Objetos;
 
-import com.sun.istack.internal.NotNull;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;

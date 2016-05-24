@@ -5,8 +5,7 @@
  */
 package Objetos;
 
-import com.sun.istack.internal.NotNull;
-import javax.annotation.Generated;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
