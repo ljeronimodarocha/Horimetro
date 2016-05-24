@@ -7,6 +7,7 @@ package Objetos;
 
 import com.sun.istack.internal.NotNull;
 import javax.annotation.Generated;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -22,9 +23,9 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @NotNull
+    @Column(nullable = false)
     private String nome;
-    @NotNull
+    @Column(nullable = false)
     private String senha ;
 
     public Usuario() {

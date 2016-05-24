@@ -26,19 +26,19 @@ public class Operacao implements Serializable {
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", name = "idEquipamento", nullable = false)
     private Equipamento equipamento;
-    @NotNull
+    @Column(nullable = false)
     private Double abastecimento;
-    @NotNull
+    @Column(nullable = false)
     private Double horasTrabalhadas;
-    @NotNull
+    @Column(nullable = false)
     private Double media;
-    @NotNull
+    @Column(nullable = false)
     private Double gastoTotal;
-    @NotNull
+    @Column(nullable = false)
     private Double valorCombustivel;
     private boolean parada;
     private String motivo;
-    @NotNull
+    @Column(nullable = false)
     private Date data;
 
     public Operacao() {
