@@ -5,6 +5,7 @@
  */
 package Objetos;
 
+import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
@@ -25,21 +26,19 @@ public class Operacao implements Serializable {
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", name = "idEquipamento", nullable = false)
     private Equipamento equipamento;
-
+    @NotNull
     private Double abastecimento;
-
+    @NotNull
     private Double horasTrabalhadas;
-
+    @NotNull
     private Double media;
-
+    @NotNull
     private Double gastoTotal;
-
+    @NotNull
     private Double valorCombustivel;
-
     private boolean parada;
-
     private String motivo;
-
+    @NotNull
     private Date data;
 
     public Operacao() {

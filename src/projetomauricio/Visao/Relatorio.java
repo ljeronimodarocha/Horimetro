@@ -421,6 +421,7 @@ public class Relatorio extends javax.swing.JFrame {
         TabtleRelatorio.getColumnModel().getColumn(6).setPreferredWidth(150);
         TabtleRelatorio.getColumnModel().getColumn(7).setPreferredWidth(270);
         TabtleRelatorio.getColumnModel().getColumn(8).setPreferredWidth(150);
+        TabtleRelatorio.setEnabled(false);
 
 //        TabtleRelatorio.setAutoResizeMode(TabtleRelatorio.setAutoResizeMode());
     }

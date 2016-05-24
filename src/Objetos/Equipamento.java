@@ -5,28 +5,37 @@
  */
 package Objetos;
 
+import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  *
  * @author Lucas
  */
 @Entity
-public class Equipamento implements Serializable{
+public class Equipamento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @NotNull
     private Integer frota;
+    @NotNull
     private String equipamento;
+    @NotNull
     private String marca;
+    @NotNull
     private String modelo;
+    @NotNull
     private String ano;
+    @NotNull
     private Double horimetro;
+    @NotNull
     private String observacao;
 
     public Equipamento() {
@@ -106,9 +115,5 @@ public class Equipamento implements Serializable{
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
-
-   
-    
-    
 
 }
